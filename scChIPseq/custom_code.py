@@ -45,4 +45,4 @@ def scChIPseq_plugin_execution_start():
     for pattern_name, pattern in search_patterns.items():
         if pattern_name not in config.sp:
             config.update_dict( config.sp, { pattern_name: pattern } )
-            log.debugg("Added {} to the search patterns".format(pattern_name))
+            log.debug("Added {} to the search patterns".format(pattern_name))
