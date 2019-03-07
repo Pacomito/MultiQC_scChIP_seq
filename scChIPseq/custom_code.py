@@ -26,7 +26,7 @@ def scChIPseq_plugin_execution_start():
     """
 
     # Halt execution if we've disabled the plugin
-    if config.kwargs.get('disable_plugin', True):
+    if config.kwargs.get('disable_plugin'):
         return None
 
     log.info("Running scChIPseq MultiQC Plugin v{}".format(config.scChIPseq_version))
