@@ -8,13 +8,9 @@ import logging
 import os
 import re
 import pandas as pd
-import subprocess
-import pyBigWig as pyBW
-from multiqc import config
 from multiqc.plots import bargraph
 from multiqc.plots import linegraph
 from multiqc.modules.base_module import BaseMultiqcModule
-from itertools import chain
 from multiqc.plots import linegraph
 import math
 import numpy as np
@@ -120,8 +116,10 @@ class MultiqcModule(BaseMultiqcModule):
 
         # Read in count_matrix
         self.scChIPseq_count_matrix = dict()
+        print('Searching the scChIPseq_count_matrix !')
         log.info('Searching the scChIPseq_count_matrix !')
         for f in self.find_log_files('scChIPseq/count_matrix'):
+            print('Found the scChIPseq_count_matrix !')
             log.info('Found the scChIPseq_count_matrix !')
             if not f['root']:
                 count = pd.read_csv("./" + f['fn'], delim_whitespace=True)
@@ -143,7 +141,6 @@ class MultiqcModule(BaseMultiqcModule):
 
        # if len(self.scChIPseq_data) == 0 or len(self.scChIPseq_flagged_count) == 0 or len(self.scChIPseq_flagged_PCR_count) == 0 or len(self.scChIPseq_flagged_PCR_RT_count) == 0:
        #     raise UserWarning
-
         if len(self.scChIPseq_data) > 0:
             log.info("Found {} reports".format(len(self.scChIPseq_data)))
         if len(self.scChIPseq_flagged_count) > 0:
@@ -535,7 +532,7 @@ class MultiqcModule(BaseMultiqcModule):
 
     def scChIPseq_count_matrix_cell_coverage_chart (self):
         """ Make the plot showing Cell coverage """
-        log.info("In the scChIPseq_count_matrix_cell_coverage_chart")
+        print("In the scChIPseq_count_matrix_cell_coverage_chart")
         for keys in self.scChIPseq_count_matrix.keys():
             count_matrix = self.scChIPseq_count_matrix[keys]
             #count_matrix[count_matrix>=1]=1
@@ -563,7 +560,6 @@ class MultiqcModule(BaseMultiqcModule):
             data[keys]= cells_dict
             data_color = dict()
             data_color[keys] = "#00bf00"
-            log.info(data)
         # Config for the plot
         pconfig = {
             'id': 'scChIPseq_count_matrix_cells_coverage_plot',
@@ -582,5 +578,3 @@ class MultiqcModule(BaseMultiqcModule):
             description=desc,
             plot=linegraph.plot(data, pconfig)
         )
-
-

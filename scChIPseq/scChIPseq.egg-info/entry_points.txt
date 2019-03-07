@@ -1,6 +1,0 @@
-[multiqc.hooks.v1]
-execution_start = scChIPseq.custom_code:scChIPseq_plugin_execution_start
-
-[multiqc.modules.v1]
-scChIPseq = scChIPseq.modules.scChIPseq:MultiqcModule
-
