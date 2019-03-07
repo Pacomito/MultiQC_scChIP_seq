@@ -8,7 +8,7 @@ from __future__ import print_function
 from pkg_resources import get_distribution
 import logging
 
-from multiqc.utils import report, util_functions, config
+from multiqc.utils import config
 
 # Initialise the main MultiQC logger
 log = logging.getLogger('multiqc')
@@ -58,6 +58,3 @@ def scChIPseq_plugin_execution_start():
     if 'scChIPseq/bigwig:' not in config.sp:
         config.update_dict( config.sp, { 'scChIPseq/bigwig:': { 'fn': '*_rmDup.bw' } } )
         log.info("Added scChIPseq/bigwig to the search patterns")
-
-
-

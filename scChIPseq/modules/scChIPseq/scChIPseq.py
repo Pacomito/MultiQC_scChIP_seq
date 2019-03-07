@@ -8,13 +8,9 @@ import logging
 import os
 import re
 import pandas as pd
-import subprocess
-import pyBigWig as pyBW
-from multiqc import config
 from multiqc.plots import bargraph
 from multiqc.plots import linegraph
 from multiqc.modules.base_module import BaseMultiqcModule
-from itertools import chain
 from multiqc.plots import linegraph
 import math
 import numpy as np
@@ -582,5 +578,3 @@ class MultiqcModule(BaseMultiqcModule):
             description=desc,
             plot=linegraph.plot(data, pconfig)
         )
-
-
